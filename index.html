@@ -1,0 +1,143 @@
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font-sans); background: #0a0a0a; color: #f5f0e8; }
+  .nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 3rem; border-bottom: 0.5px solid rgba(245,240,232,0.12); }
+  .nav-logo { font-size: 18px; font-weight: 500; letter-spacing: 0.25em; color: #f5f0e8; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 13px; color: rgba(245,240,232,0.55); text-decoration: none; letter-spacing: 0.08em; transition: color 0.2s; }
+  .nav-links a:hover { color: #f5f0e8; }
+  .hero { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 90vh; text-align: center; padding: 4rem 2rem; position: relative; }
+  .hero-eyebrow { font-size: 11px; letter-spacing: 0.3em; color: rgba(245,240,232,0.4); text-transform: uppercase; margin-bottom: 2rem; }
+  .hero-title { font-size: 64px; font-weight: 400; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 1.5rem; color: #f5f0e8; }
+  .hero-title em { font-style: italic; color: rgba(245,240,232,0.6); }
+  .hero-sub { font-size: 16px; color: rgba(245,240,232,0.5); max-width: 400px; line-height: 1.7; margin-bottom: 3rem; }
+  .btn-primary { display: inline-block; padding: 14px 36px; border: 0.5px solid rgba(245,240,232,0.35); font-size: 13px; letter-spacing: 0.15em; color: #f5f0e8; text-decoration: none; cursor: pointer; background: transparent; transition: background 0.2s, border-color 0.2s; }
+  .btn-primary:hover { background: rgba(245,240,232,0.07); border-color: rgba(245,240,232,0.6); }
+  .btn-ghost { display: inline-block; padding: 14px 36px; font-size: 13px; letter-spacing: 0.15em; color: rgba(245,240,232,0.45); text-decoration: none; cursor: pointer; background: transparent; border: none; }
+  .divider { width: 40px; height: 0.5px; background: rgba(245,240,232,0.2); margin: 0 auto 6rem; }
+  .section { padding: 6rem 3rem; max-width: 960px; margin: 0 auto; }
+  .section-label { font-size: 11px; letter-spacing: 0.3em; color: rgba(245,240,232,0.35); text-transform: uppercase; margin-bottom: 1.5rem; }
+  .section-title { font-size: 36px; font-weight: 400; line-height: 1.2; color: #f5f0e8; margin-bottom: 1.5rem; }
+  .section-body { font-size: 16px; color: rgba(245,240,232,0.5); line-height: 1.8; max-width: 560px; }
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin: 5rem 0; background: rgba(245,240,232,0.08); }
+  .pillar { background: #0a0a0a; padding: 2.5rem 2rem; }
+  .pillar-icon { font-size: 20px; color: rgba(245,240,232,0.35); margin-bottom: 1.5rem; }
+  .pillar-title { font-size: 15px; font-weight: 500; color: #f5f0e8; margin-bottom: 0.75rem; letter-spacing: 0.05em; }
+  .pillar-text { font-size: 13px; color: rgba(245,240,232,0.45); line-height: 1.7; }
+  .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(245,240,232,0.08); margin: 4rem 0; }
+  .product-img { background: #111; min-height: 320px; display: flex; align-items: center; justify-content: center; }
+  .ring-svg { opacity: 0.7; }
+  .product-info { background: #0a0a0a; padding: 3rem; display: flex; flex-direction: column; justify-content: center; }
+  .product-name { font-size: 22px; font-weight: 400; color: #f5f0e8; margin-bottom: 0.75rem; letter-spacing: 0.05em; }
+  .product-desc { font-size: 14px; color: rgba(245,240,232,0.45); line-height: 1.8; margin-bottom: 2rem; }
+  .product-price { font-size: 18px; color: rgba(245,240,232,0.7); margin-bottom: 2rem; }
+  .quote-section { padding: 6rem 3rem; text-align: center; border-top: 0.5px solid rgba(245,240,232,0.08); border-bottom: 0.5px solid rgba(245,240,232,0.08); }
+  .quote-text { font-size: 22px; font-weight: 400; font-style: italic; color: rgba(245,240,232,0.65); max-width: 600px; margin: 0 auto 2rem; line-height: 1.5; font-family: var(--font-serif); }
+  .quote-author { font-size: 12px; letter-spacing: 0.2em; color: rgba(245,240,232,0.3); text-transform: uppercase; }
+  .cta-section { padding: 8rem 3rem; text-align: center; }
+  .cta-title { font-size: 42px; font-weight: 400; color: #f5f0e8; margin-bottom: 1rem; }
+  .cta-sub { font-size: 15px; color: rgba(245,240,232,0.4); margin-bottom: 3rem; }
+  .email-row { display: flex; gap: 0; max-width: 420px; margin: 0 auto; }
+  .email-row input { flex: 1; padding: 13px 16px; background: transparent; border: 0.5px solid rgba(245,240,232,0.25); color: #f5f0e8; font-size: 13px; outline: none; }
+  .email-row input::placeholder { color: rgba(245,240,232,0.3); }
+  .email-row button { padding: 13px 24px; background: #f5f0e8; color: #0a0a0a; border: none; font-size: 13px; letter-spacing: 0.1em; cursor: pointer; font-weight: 500; }
+  .footer { padding: 2rem 3rem; border-top: 0.5px solid rgba(245,240,232,0.08); display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-size: 14px; letter-spacing: 0.25em; color: rgba(245,240,232,0.3); }
+  .footer-copy { font-size: 12px; color: rgba(245,240,232,0.2); }
+  .moon-deco { font-size: 11px; letter-spacing: 0.3em; color: rgba(245,240,232,0.2); margin-bottom: 3rem; }
+  .hero-ctas { display: flex; gap: 0; align-items: center; }
+</style>
+
+<div style="background: #0a0a0a; min-height: 100vh;">
+
+  <nav class="nav">
+    <span class="nav-logo">LUNARA</span>
+    <ul class="nav-links">
+      <li><a href="#">Collection</a></li>
+      <li><a href="#">Matériaux</a></li>
+      <li><a href="#">Atelier</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <p class="moon-deco">◌ &nbsp; Bijouterie de nuit &nbsp; ◌</p>
+    <p class="hero-eyebrow">Collection printemps 2026</p>
+    <h1 class="hero-title">Porter la lumière<br><em>de la lune</em></h1>
+    <p class="hero-sub">Des bagues façonnées à la main, pour celles et ceux qui cherchent quelque chose d'unique.</p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="sendPrompt('Montre-moi les produits Lunara en détail')">Découvrir la collection ↗</button>
+      <button class="btn-ghost">Notre histoire</button>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <p class="section-label">Notre philosophie</p>
+    <h2 class="section-title">Chaque bague,<br>une intention.</h2>
+    <p class="section-body">Lunara naît d'une conviction : la bijouterie doit raconter quelque chose. Chaque pièce est conçue pour accompagner, symboliser, traverser le temps.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <i class="ti ti-sparkles pillar-icon" aria-hidden="true"></i>
+        <p class="pillar-title">Artisanat</p>
+        <p class="pillar-text">Façonnées à la main en petites séries, jamais en masse.</p>
+      </div>
+      <div class="pillar">
+        <i class="ti ti-leaf pillar-icon" aria-hidden="true"></i>
+        <p class="pillar-title">Matériaux nobles</p>
+        <p class="pillar-text">Argent recyclé, pierres naturelles, finitions durables.</p>
+      </div>
+      <div class="pillar">
+        <i class="ti ti-infinity pillar-icon" aria-hidden="true"></i>
+        <p class="pillar-title">Durabilité</p>
+        <p class="pillar-text">Conçues pour durer, pas pour être remplacées.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="border-top: 0.5px solid rgba(245,240,232,0.08);">
+    <div class="section">
+      <p class="section-label">Pièce phare</p>
+      <div class="product-grid">
+        <div class="product-img">
+          <svg class="ring-svg" width="180" height="180" viewBox="0 0 180 180">
+            <circle cx="90" cy="90" r="60" fill="none" stroke="#c8b8a2" stroke-width="14"/>
+            <circle cx="90" cy="90" r="60" fill="none" stroke="rgba(200,184,162,0.15)" stroke-width="28"/>
+            <circle cx="90" cy="30" r="10" fill="#c8b8a2" opacity="0.8"/>
+            <circle cx="90" cy="30" r="5" fill="#1a1510"/>
+            <ellipse cx="90" cy="90" rx="60" ry="20" fill="none" stroke="rgba(200,184,162,0.2)" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <p class="product-name">Bague Sélène</p>
+          <p class="product-desc">Notre pièce signature. Un anneau en argent 925 recyclé, serti d'une pierre de lune, polie à la main. Disponible en tailles 48 à 58.</p>
+          <p class="product-price">CHF 185</p>
+          <button class="btn-primary" style="width: fit-content;">Ajouter au panier</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-section">
+    <p class="quote-text">"On ne choisit pas une bague Lunara. On la reconnaît."</p>
+    <p class="quote-author">— Sofia R., cliente depuis 2025</p>
+  </div>
+
+  <div class="cta-section">
+    <h2 class="cta-title">Rejoins l'univers Lunara</h2>
+    <p class="cta-sub">Accès en avant-première aux nouvelles pièces.</p>
+    <div class="email-row">
+      <input type="email" placeholder="ton@email.com" />
+      <button>Rejoindre</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span class="footer-logo">LUNARA</span>
+    <span class="footer-copy">© 2026 Lunara. Tous droits réservés.</span>
+  </footer>
+
+</div>
